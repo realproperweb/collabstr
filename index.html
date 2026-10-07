@@ -1,1 +1,795 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Collabstr · Creator Marketplace</title>
+    <!-- Font Awesome 6 (free) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
 
+        body {
+            background-color: #ffffff;
+            color: #0b0f1c;
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ===== HEADER ===== */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            border-bottom: 1px solid #eef2f6;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, #1e2b3c 0%, #3a4b5e 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .logo span {
+            background: linear-gradient(135deg, #2563eb, #7c3aed);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            align-items: center;
+            font-weight: 500;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #4a5a6e;
+            font-size: 0.95rem;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: #0b0f1c;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-decoration: none;
+            transition: all 0.2s;
+            cursor: pointer;
+            border: 1px solid transparent;
+        }
+
+        .btn-outline {
+            border: 1px solid #d0dae6;
+            color: #1e2b3c;
+            background: white;
+        }
+
+        .btn-outline:hover {
+            border-color: #a0b3c9;
+            background: #f8fafc;
+        }
+
+        .btn-primary {
+            background: #0b0f1c;
+            color: white;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background: #1e2b3c;
+        }
+
+        .btn-lg {
+            padding: 14px 28px;
+            font-size: 1rem;
+        }
+
+        /* ===== HERO ===== */
+        .hero {
+            padding: 60px 0 40px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3.4rem;
+            font-weight: 700;
+            line-height: 1.15;
+            letter-spacing: -0.03em;
+            max-width: 900px;
+            margin: 0 auto 20px;
+            color: #0b0f1c;
+        }
+
+        .hero h1 .highlight {
+            background: linear-gradient(135deg, #2563eb, #7c3aed);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: #4a5a6e;
+            max-width: 700px;
+            margin: 0 auto 32px;
+        }
+
+        .platform-icons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 28px;
+            margin: 40px 0 50px;
+            font-size: 1.8rem;
+            color: #4a5a6e;
+        }
+
+        .platform-icons i {
+            transition: transform 0.2s, color 0.2s;
+            cursor: default;
+        }
+
+        .platform-icons i:hover {
+            transform: translateY(-3px);
+            color: #0b0f1c;
+        }
+
+        /* ===== SEARCH / DISCOVERY ===== */
+        .search-section {
+            background: #f8fafc;
+            border-radius: 32px;
+            padding: 40px 32px;
+            margin: 20px 0 60px;
+        }
+
+        .search-bar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            align-items: center;
+            background: white;
+            border-radius: 60px;
+            padding: 8px 8px 8px 24px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.02);
+            border: 1px solid #e2e8f0;
+            max-width: 800px;
+            margin: 0 auto 30px;
+        }
+
+        .search-bar i {
+            color: #8b9eb0;
+            font-size: 1.2rem;
+        }
+
+        .search-bar input {
+            flex: 1;
+            border: none;
+            outline: none;
+            font-size: 1rem;
+            padding: 12px 8px;
+            min-width: 200px;
+            background: transparent;
+        }
+
+        .search-bar input::placeholder {
+            color: #8b9eb0;
+        }
+
+        .search-bar .btn {
+            padding: 12px 28px;
+            white-space: nowrap;
+        }
+
+        .filter-tags {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 10px;
+        }
+
+        .filter-tag {
+            background: white;
+            border: 1px solid #e2e8f0;
+            padding: 8px 18px;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            color: #4a5a6e;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .filter-tag.active,
+        .filter-tag:hover {
+            background: #0b0f1c;
+            color: white;
+            border-color: #0b0f1c;
+        }
+
+        /* ===== CREATOR GRID ===== */
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 8px;
+        }
+
+        .section-sub {
+            color: #4a5a6e;
+            margin-bottom: 32px;
+            font-size: 1.05rem;
+        }
+
+        .creator-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 24px;
+            margin: 40px 0 60px;
+        }
+
+        .creator-card {
+            background: white;
+            border: 1px solid #eef2f6;
+            border-radius: 24px;
+            padding: 22px 20px;
+            transition: box-shadow 0.2s, transform 0.1s;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.01);
+        }
+
+        .creator-card:hover {
+            box-shadow: 0 20px 30px -10px rgba(0, 0, 0, 0.08);
+            border-color: #d0dae6;
+        }
+
+        .creator-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #e0e7ff, #ede9fe);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #4f46e5;
+            margin-bottom: 16px;
+            object-fit: cover;
+        }
+
+        .creator-name {
+            font-weight: 700;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .creator-name i {
+            color: #2563eb;
+            font-size: 0.9rem;
+        }
+
+        .creator-niche {
+            color: #4a5a6e;
+            font-size: 0.9rem;
+            margin: 4px 0 12px;
+        }
+
+        .creator-stats {
+            display: flex;
+            justify-content: space-between;
+            background: #f8fafc;
+            padding: 12px 10px;
+            border-radius: 16px;
+            margin: 14px 0 16px;
+            font-size: 0.85rem;
+        }
+
+        .creator-stats div {
+            text-align: center;
+        }
+
+        .creator-stats .stat-value {
+            font-weight: 700;
+            color: #0b0f1c;
+            font-size: 1rem;
+        }
+
+        .creator-stats .stat-label {
+            color: #8b9eb0;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
+        }
+
+        .creator-rate {
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: #0b0f1c;
+            margin-bottom: 16px;
+        }
+
+        .creator-rate span {
+            font-weight: 400;
+            font-size: 0.85rem;
+            color: #8b9eb0;
+        }
+
+        .creator-card .btn {
+            width: 100%;
+            text-align: center;
+            padding: 12px;
+            border-radius: 40px;
+            font-size: 0.9rem;
+        }
+
+        /* ===== WORKFLOW ===== */
+        .workflow-section {
+            background: #f8fafc;
+            border-radius: 40px;
+            padding: 60px 40px;
+            margin: 60px 0;
+        }
+
+        .workflow-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 28px;
+            margin-top: 40px;
+        }
+
+        .workflow-step {
+            background: white;
+            padding: 28px 22px;
+            border-radius: 24px;
+            border: 1px solid #eef2f6;
+            transition: transform 0.2s;
+        }
+
+        .workflow-step:hover {
+            transform: translateY(-4px);
+        }
+
+        .workflow-step .step-icon {
+            width: 48px;
+            height: 48px;
+            background: #eef2ff;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            color: #2563eb;
+            margin-bottom: 20px;
+        }
+
+        .workflow-step h3 {
+            font-size: 1.15rem;
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+
+        .workflow-step p {
+            font-size: 0.9rem;
+            color: #4a5a6e;
+            line-height: 1.5;
+        }
+
+        /* ===== STATS BAR ===== */
+        .stats-bar {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+            text-align: center;
+            padding: 48px 0;
+            margin: 40px 0;
+            border-top: 1px solid #eef2f6;
+            border-bottom: 1px solid #eef2f6;
+        }
+
+        .stat-item .stat-number {
+            font-size: 2.4rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+
+        .stat-item .stat-label {
+            color: #4a5a6e;
+            font-size: 0.95rem;
+        }
+
+        /* ===== TESTIMONIALS ===== */
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            margin: 40px 0 60px;
+        }
+
+        .testimonial-card {
+            background: #f8fafc;
+            padding: 32px 28px;
+            border-radius: 24px;
+            border: 1px solid #eef2f6;
+        }
+
+        .testimonial-card i {
+            font-size: 1.6rem;
+            color: #2563eb;
+            opacity: 0.5;
+            margin-bottom: 16px;
+        }
+
+        .testimonial-card blockquote {
+            font-size: 1rem;
+            color: #1e2b3c;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        .testimonial-author {
+            font-weight: 700;
+            font-size: 0.95rem;
+        }
+
+        .testimonial-role {
+            color: #8b9eb0;
+            font-size: 0.85rem;
+        }
+
+        /* ===== CTA ===== */
+        .cta-section {
+            background: #0b0f1c;
+            color: white;
+            border-radius: 40px;
+            padding: 60px 40px;
+            text-align: center;
+            margin: 60px 0;
+        }
+
+        .cta-section h2 {
+            font-size: 2.4rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+        }
+
+        .cta-section p {
+            color: #a0b3c9;
+            font-size: 1.1rem;
+            margin-bottom: 32px;
+        }
+
+        .cta-section .btn-primary {
+            background: white;
+            color: #0b0f1c;
+        }
+
+        .cta-section .btn-primary:hover {
+            background: #eef2f6;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            padding: 40px 0;
+            border-top: 1px solid #eef2f6;
+            color: #8b9eb0;
+            font-size: 0.9rem;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.4rem;
+            }
+            .navbar {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .nav-links {
+                flex-wrap: wrap;
+                gap: 16px;
+            }
+            .search-bar {
+                flex-direction: column;
+                border-radius: 24px;
+                padding: 16px;
+                background: white;
+            }
+            .search-bar input {
+                width: 100%;
+                padding: 12px 8px;
+            }
+            .search-bar .btn {
+                width: 100%;
+            }
+            .workflow-section {
+                padding: 32px 20px;
+            }
+            .cta-section {
+                padding: 40px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- NAVBAR -->
+        <nav class="navbar">
+            <div class="logo">collab<span>str</span></div>
+            <div class="nav-links">
+                <a href="#">For Brands</a>
+                <a href="#">For Creators</a>
+                <a href="#">Pricing</a>
+                <a href="#" class="btn btn-outline">Log in</a>
+                <a href="#" class="btn btn-primary">Get Started Free</a>
+            </div>
+        </nav>
+
+        <!-- HERO -->
+        <header class="hero">
+            <h1>Run Influencer Marketing from <span class="highlight">First Search</span> to Final Payment.</h1>
+            <p>One place to find creators, create campaigns, track performance, and pay securely.</p>
+
+            <!-- Platform icons -->
+            <div class="platform-icons">
+                <i class="fab fa-tiktok"></i>
+                <i class="fab fa-instagram"></i>
+                <i class="fab fa-youtube"></i>
+                <i class="fab fa-x-twitter"></i>
+                <i class="fab fa-twitch"></i>
+                <i class="fab fa-amazon"></i>
+                <i class="fab fa-snapchat"></i>
+            </div>
+        </header>
+
+        <!-- SEARCH & DISCOVERY SECTION -->
+        <section class="search-section">
+            <h2 class="section-title" style="text-align:center;">Find the Right Creator before You Commit</h2>
+            <p class="section-sub" style="text-align:center;">Search 1.2m+ vetted Creators by platform, niche, audience, and budget.</p>
+
+            <div class="search-bar">
+                <i class="fas fa-search"></i>
+                <input type="text" placeholder="Search by niche, platform, or audience..." id="searchInput">
+                <button class="btn btn-primary" onclick="filterCreators()">Search Creators</button>
+            </div>
+
+            <div class="filter-tags">
+                <span class="filter-tag active" data-filter="all">All</span>
+                <span class="filter-tag" data-filter="TikTok">TikTok</span>
+                <span class="filter-tag" data-filter="Instagram">Instagram</span>
+                <span class="filter-tag" data-filter="YouTube">YouTube</span>
+                <span class="filter-tag" data-filter="UGC">UGC</span>
+                <span class="filter-tag" data-filter="Twitch">Twitch</span>
+            </div>
+        </section>
+
+        <!-- CREATOR GRID -->
+        <h2 class="section-title">Vetted Creators</h2>
+        <p class="section-sub">See verified engagement rates and demographics before you commit.</p>
+
+        <div class="creator-grid" id="creatorGrid">
+            <!-- Creator cards will be injected by JavaScript -->
+        </div>
+
+        <!-- WORKFLOW SECTION -->
+        <section class="workflow-section">
+            <h2 class="section-title" style="text-align:center;">Everything in One Workflow</h2>
+            <p class="section-sub" style="text-align:center;">From discovery to payment, all in one place.</p>
+
+            <div class="workflow-grid">
+                <div class="workflow-step">
+                    <div class="step-icon"><i class="fas fa-search"></i></div>
+                    <h3>Find the Right Creator</h3>
+                    <p>Search 1.2m+ vetted Creators by platform, niche, audience, and budget. See verified engagement rates and demographics.</p>
+                </div>
+                <div class="workflow-step">
+                    <div class="step-icon"><i class="fas fa-file-alt"></i></div>
+                    <h3>Post Detailed Briefs</h3>
+                    <p>Describe your campaign and Collabstr generates the brief, surfaces matched creators, and shows quoted rates.</p>
+                </div>
+                <div class="workflow-step">
+                    <div class="step-icon"><i class="fas fa-handshake"></i></div>
+                    <h3>Agree on Deliverables</h3>
+                    <p>Negotiate directly with Creators, agree on deliverables and usage rights, and get everything confirmed before the order starts.</p>
+                </div>
+                <div class="workflow-step">
+                    <div class="step-icon"><i class="fas fa-shield-alt"></i></div>
+                    <h3>Only Pay When Done</h3>
+                    <p>Funds stay in escrow until you approve the content. Payouts and tax forms to 150 countries handled automatically.</p>
+                </div>
+                <div class="workflow-step">
+                    <div class="step-icon"><i class="fas fa-chart-line"></i></div>
+                    <h3>Track Performance</h3>
+                    <p>See reach, engagement, and ROI across every creator, updated in real time. No messy spreadsheets.</p>
+                </div>
+                <div class="workflow-step">
+                    <div class="step-icon"><i class="fas fa-users"></i></div>
+                    <h3>Invite Your Team</h3>
+                    <p>Give your team visibility into every campaign. Assign briefs, route content for approval, and manage payments together.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- STATS BAR -->
+        <div class="stats-bar">
+            <div class="stat-item">
+                <div class="stat-number">1.2m+</div>
+                <div class="stat-label">Creators on Platform</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">540,000+</div>
+                <div class="stat-label">Brands Registered</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">100,000+</div>
+                <div class="stat-label">Pieces of Content Delivered</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">48,000+</div>
+                <div class="stat-label">5-star Reviews</div>
+            </div>
+        </div>
+
+        <!-- TESTIMONIALS -->
+        <h2 class="section-title">What Brands Say</h2>
+        <p class="section-sub">Trusted by brands running creator programs at scale.</p>
+
+        <div class="testimonial-grid">
+            <div class="testimonial-card">
+                <i class="fas fa-quote-left"></i>
+                <blockquote>“Having campaigns and live post tracking in one place means we are not cobbling things together across tools. I don’t need a spreadsheet, a separate analytics tool, and a messaging app, it’s all in one place.”</blockquote>
+                <div class="testimonial-author">Marsha Jean-Louis</div>
+                <div class="testimonial-role">CEO, Mane Theory</div>
+            </div>
+            <div class="testimonial-card">
+                <i class="fas fa-quote-left"></i>
+                <blockquote>“Through Collabstr, we built a scalable pipeline of on-brand UGC across multiple markets. This allowed us to rapidly test and iterate creative, improving engagement and informing our paid media strategy.”</blockquote>
+                <div class="testimonial-author">Marketing Coordinator</div>
+                <div class="testimonial-role">Orange Theory Fitness</div>
+            </div>
+            <div class="testimonial-card">
+                <i class="fas fa-quote-left"></i>
+                <blockquote>“Collabstr makes it so much easier to get creators paid and keep the program moving. It has completely changed how quickly we can operate.”</blockquote>
+                <div class="testimonial-author">Sarah K.</div>
+                <div class="testimonial-role">Head of Marketing, Avery</div>
+            </div>
+        </div>
+
+        <!-- CTA SECTION -->
+        <section class="cta-section">
+            <h2>Your Next Creator Collaboration is Three Minutes away.</h2>
+            <p>Search 1.2m+ vetted creators right now. See audience demographics, pricing, and engagement rate before you commit.</p>
+            <a href="#" class="btn btn-primary btn-lg">Get Started Free</a>
+            <p style="margin-top: 20px; font-size: 0.9rem; color: #a0b3c9;">Free to start · 1.2m+ vetted creators · Transparent creator fees</p>
+        </section>
+
+        <!-- FOOTER -->
+        <footer>
+            <div>© 2025 Collabstr Clone. All rights reserved.</div>
+            <div>
+                <a href="#" style="color:#8b9eb0; text-decoration:none; margin-right:20px;">Privacy</a>
+                <a href="#" style="color:#8b9eb0; text-decoration:none;">Terms</a>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // ---------- MOCK CREATOR DATA ----------
+        const creators = [
+            { id: 1, name: 'Lena Martinez', handle: '@lena.creates', platform: 'TikTok', niche: 'Beauty & Skincare', followers: '487K', engagement: '5.2%', rate: '$450', avatar: 'L', verified: true },
+            { id: 2, name: 'Marcus Chen', handle: '@marcus.fit', platform: 'Instagram', niche: 'Fitness & Health', followers: '212K', engagement: '4.8%', rate: '$380', avatar: 'M', verified: true },
+            { id: 3, name: 'Zoe Parker', handle: '@zoeugc', platform: 'UGC', niche: 'Lifestyle & Home', followers: '85K', engagement: '6.1%', rate: '$250', avatar: 'Z', verified: false },
+            { id: 4, name: 'Devon Wright', handle: '@devonplays', platform: 'Twitch', niche: 'Gaming', followers: '1.2M', engagement: '3.9%', rate: '$900', avatar: 'D', verified: true },
+            { id: 5, name: 'Aria Singh', handle: '@aria.eats', platform: 'YouTube', niche: 'Food & Cooking', followers: '324K', engagement: '5.5%', rate: '$620', avatar: 'A', verified: true },
+            { id: 6, name: 'Jake Torres', handle: '@jaketravels', platform: 'TikTok', niche: 'Travel', followers: '698K', engagement: '4.4%', rate: '$550', avatar: 'J', verified: false },
+            { id: 7, name: 'Mia Foster', handle: '@mia.style', platform: 'Instagram', niche: 'Fashion', followers: '145K', engagement: '6.8%', rate: '$320', avatar: 'M', verified: true },
+            { id: 8, name: 'Ethan Brooks', handle: '@ethan.tech', platform: 'YouTube', niche: 'Tech & Gadgets', followers: '567K', engagement: '3.2%', rate: '$780', avatar: 'E', verified: true }
+        ];
+
+        // ---------- RENDER CREATORS ----------
+        const grid = document.getElementById('creatorGrid');
+
+        function renderCreators(filter = 'all', searchTerm = '') {
+            const term = searchTerm.toLowerCase().trim();
+            const filtered = creators.filter(c => {
+                const matchesFilter = filter === 'all' || c.platform === filter;
+                const matchesSearch = term === '' ||
+                    c.name.toLowerCase().includes(term) ||
+                    c.niche.toLowerCase().includes(term) ||
+                    c.platform.toLowerCase().includes(term) ||
+                    c.handle.toLowerCase().includes(term);
+                return matchesFilter && matchesSearch;
+            });
+
+            if (filtered.length === 0) {
+                grid.innerHTML = `<div style="grid-column: 1/-1; text-align: center; padding: 60px 20px; color: #4a5a6e;">No creators match your criteria. Try adjusting your filters.</div>`;
+                return;
+            }
+
+            grid.innerHTML = filtered.map(c => `
+                <div class="creator-card">
+                    <div class="creator-avatar">${c.avatar}</div>
+                    <div class="creator-name">
+                        ${c.name}
+                        ${c.verified ? '<i class="fas fa-check-circle" title="Verified"></i>' : ''}
+                    </div>
+                    <div class="creator-niche">${c.niche} · ${c.handle}</div>
+                    <div class="creator-stats">
+                        <div>
+                            <div class="stat-value">${c.followers}</div>
+                            <div class="stat-label">Followers</div>
+                        </div>
+                        <div>
+                            <div class="stat-value">${c.engagement}</div>
+                            <div class="stat-label">Engagement</div>
+                        </div>
+                    </div>
+                    <div class="creator-rate">${c.rate} <span>/ post</span></div>
+                    <button class="btn btn-primary" onclick="alert('Connect with ${c.name} — demo action')">Connect</button>
+                </div>
+            `).join('');
+        }
+
+        // ---------- FILTER LOGIC ----------
+        let activeFilter = 'all';
+
+        document.querySelectorAll('.filter-tag').forEach(tag => {
+            tag.addEventListener('click', function() {
+                document.querySelectorAll('.filter-tag').forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+                activeFilter = this.dataset.filter;
+                const searchTerm = document.getElementById('searchInput').value;
+                renderCreators(activeFilter, searchTerm);
+            });
+        });
+
+        function filterCreators() {
+            const searchTerm = document.getElementById('searchInput').value;
+            renderCreators(activeFilter, searchTerm);
+        }
+
+        // Allow Enter key to trigger search
+        document.getElementById('searchInput').addEventListener('keyup', function(e) {
+            if (e.key === 'Enter') {
+                filterCreators();
+            }
+        });
+
+        // Initial render
+        renderCreators('all', '');
+    </script>
+</body>
+</html>
